@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <Div>
+        <h1> Hello World</h1>
+    </Div>
+    <script type="text/javascript">
+ 
+// Конструктор об'єкта MP3 плеєра
+function MP3Player(brand, model, storageCapacity) {
+    this.brand = brand;
+    this.model = model;
+    this.storageCapacity = storageCapacity;
+    let volume = 50; // Приватна властивість гучності
+
+    // Методи геттер та сеттер
+    this.getVolume = function() {
+        return volume;
+    };
+
+    this.setVolume = function(newVolume) {
+        if (newVolume >= 0 && newVolume <= 100) {
+            volume = newVolume;
+        } else {
+            console.log("Гучність має бути в діапазоні від 0 до 100.");
+        }
+    };
+
+    // Єдиний метод геттер-сетер
+    this.volume = function(newVolume) {
+        if (typeof newVolume !== 'undefined') {
+            this.setVolume(newVolume);
+        }
+        return this.getVolume();
+    };
+}
+
+// Створення екземпляра MP3 плеєра
+var player = new MP3Player("Sony", "Walkman NW-A55", "64GB");
+
+// Приклад використання методів геттера та сеттера
+console.log(player.getVolume()); // Виведе: 50
+player.setVolume(75);
+console.log(player.getVolume()); // Виведе: 75
+
+// Приклад використання єдиного методу геттер-сеттера
+console.log(player.volume()); // Виведе: 75
+player.volume(90);
+console.log(player.volume()); // Виведе: 90
+
+
+        </script>
+</body>
+</html>
