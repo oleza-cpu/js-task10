@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <Div>
+        <h1> Hello World</h1>
+    </Div>
+    <script type="text/javascript">
+ 
+// Тип об'єктів "Квадрат"
+function Square(side) {
+    // Захищена властивість для збереження значення сторони
+    let _side = side;
+
+    // Метод для доступу до сторони квадрата
+    this.getSide = function() {
+        return _side;
+    };
+
+    // Публічний метод для обчислення периметра квадрата
+    this.calculatePerimeter = function() {
+        return 4 * _side;
+    };
+}
+
+// Тип об'єктів "Куб", успадковується від "Квадрат"
+function Cube(side) {
+    // Виклик конструктора "Квадрат"
+    Square.call(this, side);
+
+    // Перевизначення методу обчислення периметра
+    this.calculatePerimeter = function() {
+        // Використовуємо результат методу батьківського типу для подальших розрахунків
+        let perimeter = Square.prototype.calculatePerimeter.call(this);
+        // Периметр куба - це периметр квадрата помножений на 3, оскільки у куба 6 сторін
+        return perimeter * 3;
+    };
+}
+
+// Перший варіант - без розширення
+// Перевизначаємо метод calculatePerimeter для типу Cube без використання результату батьківського методу
+Cube.prototype.calculatePerimeter = function() {
+    let side = this.getSide();
+    return 12 * side;
+};
+
+// Створення екземплярів об'єктів і виведення результату
+var square = new Square(5);
+console.log("Периметр квадрата:", square.calculatePerimeter()); // Виведе: 20
+
+var cube = new Cube(5);
+console.log("Периметр куба (без розширення):", cube.calculatePerimeter()); // Виведе: 60
+
+// Другий варіант - з розширенням
+// Використовуємо результат методу батьківського типу для подальших розрахунків
+console.log("Периметр куба (з розширенням):", cube.calculatePerimeter()); // Виведе: 60
+
+
+
+        </script>
+</body>
+</html>
