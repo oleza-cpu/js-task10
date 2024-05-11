@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <Div>
+        <h1> Hello World</h1>
+    </Div>
+    <script type="text/javascript">
+ 
+// Конструктор об'єкта Summator
+function Summator() {
+    // Приватні властивості
+    let __firstNumber = 0;
+    let __secondNumber = 0;
+    let result = 0;
+
+    // Приватний метод для обчислення суми
+    function __calc() {
+        result = __firstNumber + __secondNumber;
+    }
+
+    // Публічна властивість
+    this.result = result;
+
+    // Єдині методи геттер-сеттер для властивостей __firstNumber і __secondNumber
+    this.getFirstNumber = function() {
+        return __firstNumber;
+    };
+
+    this.setFirstNumber = function(num) {
+        if (typeof num === 'number') {
+            __firstNumber = num;
+            __calc();
+        } else {
+            console.log("Перше число має бути числом.");
+        }
+    };
+
+    this.getSecondNumber = function() {
+        return __secondNumber;
+    };
+
+    this.setSecondNumber = function(num) {
+        if (typeof num === 'number') {
+            __secondNumber = num;
+            __calc();
+        } else {
+            console.log("Друге число має бути числом.");
+        }
+    };
+}
+
+// Створення екземпляра об'єкта Summator
+var summator = new Summator();
+
+// Використання методів геттер-сеттерів
+summator.setFirstNumber(5);
+summator.setSecondNumber(10);
+console.log(summator.result); // Виведе: 15
+
+
+        </script>
+</body>
+</html>
