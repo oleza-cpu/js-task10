@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <Div>
+        <h1> Hello World</h1>
+    </Div>
+    <script type="text/javascript">
+ 
+// Тип об'єктів "Геометрична фігура"
+function GeometricFigure(centerX, centerY) {
+    // Приватні властивості для встановлення центру фігури
+    let _centerX = centerX;
+    let _centerY = centerY;
+
+    // Методи доступу до центру фігури
+    this.getCenterX = function() {
+        return _centerX;
+    };
+
+    this.setCenterX = function(x) {
+        _centerX = x;
+    };
+
+    this.getCenterY = function() {
+        return _centerY;
+    };
+
+    this.setCenterY = function(y) {
+        _centerY = y;
+    };
+}
+
+// Тип об'єктів "Прямокутник", спадкоємець від "Геометрична фігура"
+function Rectangle(centerX, centerY, width, height) {
+    // Виклик конструктора "Геометрична фігура"
+    GeometricFigure.call(this, centerX, centerY);
+
+    // Приватна характеристика "довжина діагоналі"
+    let _diagonalLength = Math.sqrt(width * width + height * height);
+
+    // Публічний метод для виведення інформації
+    this.info = function() {
+        console.log("Прямокутник:");
+        console.log("Центр:", this.getCenterX(), ",", this.getCenterY());
+        console.log("Ширина:", width);
+        console.log("Висота:", height);
+        console.log("Довжина діагоналі:", _diagonalLength);
+    };
+}
+
+// Тип об'єктів "Коло", спадкоємець від "Геометрична фігура"
+function Circle(centerX, centerY, radius) {
+    // Виклик конструктора "Геометрична фігура"
+    GeometricFigure.call(this, centerX, centerY);
+
+    // Приватна характеристика "радіус"
+    let _radius = radius;
+
+    // Публічний метод для виведення інформації
+    this.info = function() {
+        console.log("Коло:");
+        console.log("Центр:", this.getCenterX(), ",", this.getCenterY());
+        console.log("Радіус:", _radius);
+    };
+}
+
+// Створення екземплярів об'єктів і виведення інформації
+var rectangle = new Rectangle(0, 0, 5, 3);
+rectangle.info();
+
+var circle = new Circle(2, 2, 4);
+circle.info();
+
+
+        </script>
+</body>
+</html>
